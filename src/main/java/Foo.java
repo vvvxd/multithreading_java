@@ -5,21 +5,21 @@ public class Foo {
     static Semaphore secondSem = new Semaphore(0);
     static Semaphore thirdSem = new Semaphore(0);
 
-    public void first() throws InterruptedException {
+    public void first(Runnable r1) throws InterruptedException {
         firstSem.acquire();
-        System.out.print("first");
+        r1.run();
         secondSem.release();
     }
 
-    public void second() throws InterruptedException {
+    public void second(Runnable r1) throws InterruptedException {
         secondSem.acquire();
-        System.out.print("second");
+        r1.run();
         thirdSem.release();
     }
 
-    public void third() throws InterruptedException {
+    public void third(Runnable r1) throws InterruptedException {
         thirdSem.acquire();
-        System.out.print("third ");
+        r1.run();
         firstSem.release();
     }
 }
